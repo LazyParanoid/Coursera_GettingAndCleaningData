@@ -1,0 +1,48 @@
+Codebook
+=====
+
+About the original data set
+------------------
+I got the data set from [UCI Machine Learning repository][1]. It is originally collected in [this study][2] by Dr. Anguita etc. 
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. 
+
+
+How I modify the data
+------------------
+As requested by the course project, I manipulate the original data set in the following steps:
+
+* Merges the training and the test sets to create one data set.
+* Extracts only the measurements on the mean and standard deviation for each measurement. 
+* Uses descriptive activity names to name the activities in the data set
+* Appropriately labels the data set with descriptive variable names. 
+* Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+
+About the tidy data set I created
+------------------
+### Units
+Features are normalized and bounded within [-1,1].
+
+### Descriptive Column/Variable Names
+
+According to my own understanding of the *feature_info.txt* provided with the dataset, I labeled the variables with the following rules:
+
+* Variable with names starting with *t* are labeled as "Time.Singal" and variables with names starting with *f* are labeled as "Frequency.Signal"
+* *BodyAcc* are labeled as "Accelerometer.Raw.Data" and *BodyAccJerk* are labeled as "Linear.Acceleration".
+* *BodyGyro* are labeled as "Gyroscope.Raw.Data" and *BodyGyroJerk* are labeled as "Angular.Velocity".
+* Some variables has a weird name (for e.g.*fBodyBodyGyroJerkMag*). I just remove the duplicate *Body* in the variable name
+* *Mag* are labeled as "Magnitude" and *-X*/*-Y*/*-Z* are labeled as "in.X/Y/Z.Direction" respectively.
+* *-mean()* are labeled as "Mean.Value" and *-std()* are labeled as "Standard.Deviation"
+
+### Two more Columns
+The last two column/variable of the tidy data set are the activity and the subject of this observation. 
+
+* The activity data in the original data set is translated with this rule: 1-*WALKING*, 2-*WALKING_UPSTAIRS*, 3-*WALKING_DOWNSTAIRS*, 4-*SITTING*, 5-*STANDING*, 6-*LAYING*. 
+* Subjects are just labeled as 1-30.
+
+
+
+[1]:http://archive.ics.uci.edu/ml/
+[2]:http://link.springer.com/chapter/10.1007%2F978-3-642-35395-6_30
